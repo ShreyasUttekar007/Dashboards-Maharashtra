@@ -10,6 +10,7 @@ const authMiddleware = require("./middleware/authMiddleware");
 const errorHandler = require("./middleware/errorHandler");
 // const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
+const biUrlsRoutes = require("./routes/biUrls");
 // const postRoutes = require("./routes/post")
 // const mediaRoutes = require("./routes/media")
 const cookieParser = require("cookie-parser");
@@ -81,6 +82,7 @@ app.use(errorHandler);
 // Use routes
 // app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/biUrls", biUrlsRoutes); 
 // app.use("/api/post", postRoutes);
 // app.use("/api/media", mediaRoutes);
 
