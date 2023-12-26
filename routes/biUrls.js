@@ -31,4 +31,23 @@ router.get("/get-bi/:userId", authenticateUser, async (req, res, next) => {
   }
 });
 
+router.delete("/delete-bi/:biId", authenticateUser, async (req, res, next) => {
+  try {
+    const { biId } = req.params;
+    const { _id: userId } = req.user;
+
+    const biData = await PowerBiData.findOne({ _id: biId, userId });
+
+    if (!biData) {
+      return res.status(404).json({ message: "Power BI URL not found" });
+    }
+
+    await PowerBiData.deleteOne({ _id: biId, userId });
+
+    res.status(200).json({ message: "Power BI URL deleted successfully" });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;
